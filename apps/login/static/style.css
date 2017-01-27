@@ -1,0 +1,118 @@
+* {margin: auto; padding: 0;}
+
+
+#container {
+    
+    height: auto;
+    width: 974px;
+    background-color: ;
+   
+}
+
+#register {
+    display: inline-block;
+    background-color: #b1b1a5;
+    height: 400px;
+    width: 530px;
+    border-style: solid;
+    border-width: 3px;
+}
+
+#login {
+    display: inline-block;
+    background-color: lightgray;
+    height: 300px;
+    width: 430px;
+    vertical-align: top;
+    border-style: solid;
+    border-width: 3px;
+}
+
+label {
+    font-size: 20px;
+    padding-left: 20px;
+}
+
+.register {
+    padding: 20px 10px 10px 20px;
+}
+
+
+input {
+    vertical-align: right;
+}
+
+.name {
+    margin-left: 103px;
+    padding-left: 20px;
+    height: 30px;
+    margin-bottom: 10px;
+}
+
+.last {
+    padding-left: 20px;
+    height: 30px;
+    margin-left: 105px;
+    margin-bottom: 10px;
+}
+
+.email {
+    padding-left: 20px;
+    height: 30px;
+    margin-left: 147px;
+    margin-bottom: 10px;
+
+}
+
+.password {
+    padding-left: 20px;
+    height: 30px;
+    margin-left: 115px;
+    margin-bottom: 10px;
+}
+
+.pass {
+   padding-left: 20px;
+   margin-bottom: 10px;    
+}
+
+.confirm {
+    margin-left: 40px;
+    padding-left: 20px;
+    height: 30px;
+    margin-bottom: 10px; 
+}
+
+
+
+
+
+.email2 {
+    padding-left: 20px;
+    margin-left: 40px;
+    height: 30px;
+    margin-bottom: 10px;
+}
+
+.password2 {
+    padding-left: 20px;
+    height: 30px;
+    margin-left: 8px;
+}
+
+.welcome {
+    margin-top: 30px; 
+    height: 50px;
+    background-color: #4a5050;
+    width: 970px;
+    margin-right: 28px;
+    border-style: solid;
+    border-width: 3px;
+    margin-bottom: 3px;
+    padding-top: 5px;
+   
+}
+
+.messages {
+    list-style-type: none;
+}
