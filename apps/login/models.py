@@ -2,6 +2,7 @@ from __future__ import unicode_literals
 from django.contrib import messages
 from django.db import models
 import bcrypt
+import re
 
 class UserManager(models.Manager):
     def register(self,request):
@@ -18,13 +19,20 @@ class UserManager(models.Manager):
             
         email_match = User.objects.filter(email=request.POST['email'])
         
+        addressToVerify = request.POST['email']
+        match = re.match('^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$', addressToVerify)
+        
+        if match == None:
+            messages.error(request, "Email is invalid or space is empty**")
+            is_valid = False
+        
         if len(email_match) > 0:
-            messages.error(request, "That email is already in use")
+            messages.error(request, "That email is already in use**")
             is_valid = False
             
-        if len(request.POST['email']) == 0:
-            messages.error(request, 'email space cannot be empty*');
-            is_valid = False
+        #if len(request.POST['email']) == 0:
+        #    messages.error(request, 'email space cannot be empty*');
+        #    is_valid = False
             
         if len(request.POST['password']) == 0:
             messages.error(request, 'password space cannot be empty*');
