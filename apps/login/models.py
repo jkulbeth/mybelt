@@ -52,8 +52,6 @@ class UserManager(models.Manager):
         
         request.session['logged_in_as'] = user.id
         
-        #request.session.pop ('logged_in_as')...code to log out ...goes into another method for "log - off"
-        #return true
         return True
     
     def login(self, request):
@@ -62,7 +60,7 @@ class UserManager(models.Manager):
         #does this person exist
         if len(users) == 0:
             messages.error(request, 'Invalid Email*')
-            return Falseg
+            return False
         
         user = users[0]
         
@@ -72,7 +70,7 @@ class UserManager(models.Manager):
             messages.error(request, "Incorrect Password*")
             return False
         
-        request.session['logged_in_as'] = user.first_name
+        request.session['logged_in_as'] = user.id
         
         return True
         

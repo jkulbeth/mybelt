@@ -15,8 +15,11 @@ def register(request):
 
 def login(request):
     val_log = User.objects.login(request)
+    
     if val_log:
+            
         return redirect ('/dashboard')
     else:
+        
         return redirect('/')
 

@@ -1,5 +1,17 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from  ..login.models import User
 
-# Create your views here.
 def index(request):
-    return render(request, "belt/index.html")
+    user = User.objects.get(id=request.session['logged_in_as'])
+    
+    context = {
+        'users' : user
+    }
+    
+    return render(request, "belt/index.html",context)
+
+def log_out(request):
+    
+    request.session.pop('logged_in_as')
+
+    return redirect( "/")
