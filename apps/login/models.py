@@ -4,6 +4,7 @@ from django.db import models
 import bcrypt
 import re
 
+
 class UserManager(models.Manager):
     def register(self,request):
         # make sure form is validated
@@ -82,7 +83,31 @@ class UserManager(models.Manager):
         
         return True
         
-    
+class ItemManager(models.Manager):
+    def item_create(self, request):
+        
+        is_valid = True
+        
+        if len(request.POST['item_create']) == 0:
+            messages.error(request, " Space cannot be empty*");
+            is_valid = False
+            
+        if len(request.POST['item_create']) < 4:
+            messages.error(request, "*Item cannot be less than 3 characters long*");
+            is_valid = False
+            
+        if not is_valid:
+            return False
+       
+        
+        
+        user = User.objects.get(id=request.session['logged_in_as'])
+        
+        create = Item.objects.create(item=request.POST['item_create'],wished=user) 
+ 			 	
+        create.users.add(user)
+        create.save()
+        return True
 
 class User(models.Model):
     first_name = models.CharField(max_length=255)
@@ -90,3 +115,24 @@ class User(models.Model):
     email = models.CharField(max_length=255)
     password = models.CharField(max_length=255)
     objects = UserManager()
+    #having log_in issues when I try to add these to the tables..leaving them out, for now
+    #created_at = models.DateTimeField(auto_now_add = True)
+    #updated_at = models.DateTimeField(auto_now = True)
+    objects = UserManager()
+    
+class Item(models.Model):
+    users = models.ManyToManyField(User, related_name='wished_for')
+    
+    wished = models.ForeignKey(User)
+    
+    item = models.CharField(max_length=255)
+    
+    created_at = models.DateTimeField(auto_now_add = True)
+    
+    updated_at = models.DateTimeField(auto_now = True)
+    
+    objects = ItemManager()
+    
+    
+        
+    

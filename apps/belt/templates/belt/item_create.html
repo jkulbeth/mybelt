@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add an Item...</title>
+</head>
+
+<body>
+    <a href="/dashboard">Home</a>
+    <a href="/">Logout</a>
+    <p>Create a new wish list item...</p>
+    <form action="/dashboard/item_create" method="POST">
+         {% csrf_token %}
+         <p>Item: <input type="text" name="item_create"></p>
+         <input type="submit" value="Add Item">
+     </form>
+</body>
+</html>

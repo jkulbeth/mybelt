@@ -1,3 +1,52 @@
-Hello :{{users.first_name}}{{users.last_name}}
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
 
-<a href="/dashboard/log_out">Log Out</a>
+</head>
+<body>
+    <H2>Hello...{{users.first_name}}_{{users.last_name}}</H2>
+        
+    <a href="/dashboard/log_out">Log Out</a>    
+    <hr>
+    <p>Heres your current wish list:</p>
+   <table>
+        <thead>
+            <tr>
+                <th>Item...   |</th><th>Added by User...|</th><th>Date item was added...   |</th><th>Actions...</th>                
+            </tr>
+        </thead>
+        
+        <tbody>
+               {% for you in yours %}   
+                <tr>
+
+                    <td><a href='/dashboard/item_show/{{you.id}}'>{{you.item}}</a></td> <td>{{you.wished.first_name}}_{{you.wished.last_name}}</td><td>{{you.created_at}}</td><td><a href = '/dashboard/item_remove/{{you.id}}'>Remove from my list.../</a></td><td><a href = '/dashboard/item_delete/{{you.id}}'>Delete from my list...</a></td>
+
+                </tr>
+             {% endfor %}
+        </tbody>
+    </table>
+    <p>Other User's wish List</p>
+     <table>
+         <thead>
+             <tr>
+                 <td>Item...|</td><td>Added by User...|</td><td>Date item was added...|</td><td>Actions...</td>
+             </tr>
+         </thead>
+         <tbody>
+                {% for them in theres %}
+             <tr>
+                  <td><a href="/dashboard/item_show/{{them.id}}">{{them.item}}</a></td><td>{{them.wished.first_name}}_{{them.wished.last_name}}</td><td>{{them.created_at}}</td><td><a href = '/dashboard/item_added/{{you.id}}'>Add to my wishlist...</a></td>
+             </tr>
+         {% endfor %}
+         </tbody>
+     </table>
+ 
+    <a href="/dashboard/add">Add a new product</a>    
+</body>
+</html>
+
+

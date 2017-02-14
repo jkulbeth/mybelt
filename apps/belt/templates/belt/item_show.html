@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+
+<body>
+    <a href="/dashboard">Home</a>
+    <a href="/">Logout</a>
+    <h1>{{wishes.item}}</h1>
+    <h3>Users who added this product/item under their wish list:</h3>
+    
+   
+        {% for item in wishes.users.all %}
+            {{item.first_name}}_{{item.last_name}}
+        {% endfor %}
+  
+</body>
+</html>
